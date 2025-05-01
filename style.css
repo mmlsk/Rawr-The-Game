@@ -1,0 +1,87 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    background-color: #f7f7f7;
+    margin-top: 20px;
+    User-select none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    touch-action: manipulation;
+}
+
+#instructions {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+#game {
+    width: 600px; /* Game area width */
+    height: 200px; /* Game area height */
+    border: 1px solid #333;
+    margin: 20px auto; /* Center the game area */
+    background-color: white;
+    position: relative; /* Needed for absolute positioning of children */
+    overflow: hidden; /* Hide obstacle when it goes off-screen */
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    touch-action: manipulation 
+}
+
+#dino {
+    width: 50px;
+    height: 50px;
+    background-image: url('dino.png');
+    Background-size: contain;
+    background-repeat: no-repeat;
+    Background-position center;
+    position: absolute; /* Position relative to #game */
+    bottom: 0; /* Start at the bottom */
+    left: 50px; /* Fixed horizontal position */
+}
+
+/* Class added during jump */
+.jump {
+    animation: jumpAnimation 0.5s linear; /* 500ms duration */
+}
+
+@keyframes jumpAnimation {
+    0% { bottom: 0; }
+    50% { bottom: 100px; } /* Peak jump height */
+    100% { bottom: 0; }
+}
+
+#obstacle {
+    width: 40px;
+    height: 30px;
+    background-image: url('bed-new.png');
+    background-size: contain; /* Fits the image inside the width/height */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-position: center; /* Centers the image */
+    position: absolute;
+    bottom: 0;
+    right: -30px; /* Start just off-screen to the right */
+    /* Animation gets added/controlled by JavaScript */
+}
+
+/* Animation for the obstacle movement */
+.move {
+    animation: obstacleMove 1.5s linear infinite; /* Speed and repetition */
+}
+
+@keyframes obstacleMove {
+    0% { right: -30px; } /* Start off-screen right */
+    100% { right: 600px; } /* End off-screen left (game width) */
+}
+
+#score {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+#gameOver {
+    font-size: 1.5em;
+    color: red;
+    margin-top: 15px;
+    font-weight: bold;
+}
